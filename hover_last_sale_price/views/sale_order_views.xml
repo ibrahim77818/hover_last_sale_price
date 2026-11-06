@@ -4,8 +4,7 @@
          widget in JS, so the product column needs no view change (and it
          stays compatible with the product configurator / matrix, which patch
          the same component). The order exposes the technical flag and the
-         unit price gets the history icon widget. In 17.0 the line list is
-         still a <tree> (it becomes <list> in 18.0). -->
+         unit price gets the history icon widget. 18.0 renamed <tree> to <list>. -->
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.hover.last.sale.price</field>
         <field name="model">sale.order</field>
@@ -14,7 +13,7 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="lsp_hover_enabled" invisible="1"/>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_unit']" position="attributes">
                 <attribute name="widget">lsp_price_unit</attribute>
             </xpath>
         </field>

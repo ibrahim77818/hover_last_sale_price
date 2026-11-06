@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 LSP_DEFAULT_LIMIT = 5
@@ -38,7 +38,7 @@ class ResCompany(models.Model):
     def _check_lsp_hover_limit(self):
         for company in self:
             if not 1 <= company.lsp_hover_limit <= LSP_MAX_LIMIT:
-                raise ValidationError(_(
+                raise ValidationError(self.env._(
                     "The number of transactions to show on hover must be "
                     "between 1 and %(max)s.", max=LSP_MAX_LIMIT))
 

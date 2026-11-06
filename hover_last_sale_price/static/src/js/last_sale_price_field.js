@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { xml } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { FloatField, floatField } from "@web/views/fields/float/float_field";
@@ -51,7 +49,7 @@ export class LastSalePriceUnitPriceField extends FloatField {
     }
 }
 
-// 17.0: the fields registry holds descriptor objects ({ component,
+// The fields registry holds descriptor objects ({ component,
 // extractProps, supportedTypes, ... }) instead of component classes. Reuse
 // the standard descriptors so props extraction stays identical.
 const productDescriptor = {

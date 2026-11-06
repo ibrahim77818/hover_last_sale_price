@@ -42,7 +42,7 @@ class TestLastSalePrice(TransactionCase):
             dict(partner_vals, name='LSP Other Customer', is_company=True))
 
         product_vals = {
-            'detailed_type': 'consu',
+            'type': 'consu',
             'list_price': 50.0,
             'uom_id': cls.uom_unit.id,
             'uom_po_id': cls.uom_unit.id,
@@ -249,7 +249,7 @@ class TestLastSalePrice(TransactionCase):
         self.assertAlmostEqual(line['normalized_price'], 12.5)
 
     def test_18_history_includes_locked_orders(self):
-        # 17.0: locking keeps the order in state 'sale' (no 'done' state).
+        # Locking keeps the order in state 'sale' (no 'done' state).
         locked = self._create_order(61.0, days_ago=3)
         locked.action_lock()
         self.assertTrue(locked.locked)
@@ -367,6 +367,20 @@ class TestLastSalePrice(TransactionCase):
             'order_line': [(0, 0, {'product_id': self.product.id})],
         })
         self.assertEqual(order.order_line.price_unit, 50.0)
+
+    def test_32_manual_price_kept_on_quantity_change(self):
+        # 18.0 technical_price_unit contract: a price typed by the user must
+        # survive later quantity changes, a suggested one is re-applied.
+        self._create_order(42.0)
+        order_form = self._new_order_form()
+        with order_form.order_line.new() as line:
+            line.product_id = self.product
+            self.assertEqual(line.price_unit, 42.0)
+            line.price_unit = 99.0
+            line.product_uom_qty = 5.0
+            self.assertEqual(line.price_unit, 99.0)
+        order = order_form.save()
+        self.assertEqual(order.order_line.price_unit, 99.0)
 
     def test_31_suggestion_skips_section_lines(self):
         self._create_order(42.0)

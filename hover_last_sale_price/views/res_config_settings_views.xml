@@ -5,8 +5,7 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <!-- 17.0 settings use <app>/<block>/<setting> instead of the
-                 data-key divs and o_setting_box markup of 16.0. -->
+            <!-- Settings layout: <app>/<block>/<setting> (unchanged in 18.0). -->
             <xpath expr="//app[@name='sale_management']" position="inside">
                 <block title="Last Sale Price" name="lsp_settings_container">
                     <setting id="lsp_enabled_setting"

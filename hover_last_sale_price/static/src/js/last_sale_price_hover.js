@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import { onWillUnmount, useEnv } from "@odoo/owl";
 import { usePopover } from "@web/core/popover/popover_hook";
 import { _t } from "@web/core/l10n/translation";
@@ -42,7 +40,7 @@ export function useLastSalePriceHover(getRecord) {
         requestId: 0,
         hovered: false,
     };
-    // 17.0 API: usePopover(Component, options) -> { open, close, isOpen }.
+    // usePopover(Component, options) -> { open, close, isOpen }.
     const popover = usePopover(LastSalePricePopover, {
         position: "bottom",
         popoverClass: "o_lsp_popover_container",

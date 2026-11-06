@@ -1,9 +1,9 @@
-# Hover Last Sale Price (Odoo 17.0)
+# Hover Last Sale Price (Odoo 18.0)
 
 Show each customer's last sale prices right on the sales order line, and optionally pre-fill new lines
 with the customer's last price, converted to the line's unit of measure and currency.
 
-**Odoo 17.0** &middot; Community &amp; Enterprise &middot; English &amp; Arabic (`ar_001`, RTL) &middot; LGPL-3
+**Odoo 18.0** &middot; Community &amp; Enterprise &middot; English &amp; Arabic (`ar_001`, RTL) &middot; LGPL-3
 
 ## Branches
 
@@ -14,7 +14,7 @@ with the customer's last price, converted to the line's unit of measure and curr
 | [`18.0`](../../tree/18.0) | 18.0 |
 | [`19.0`](../../tree/19.0) | 19.0 |
 
-Use the branch that matches your Odoo version. This branch: **17.0**. Ported from 16.0: 17.0 settings layout (`<app>/<block>/<setting>`), `attrs` replaced by inline expressions, field registry descriptors, `usePopover(Component, options)` API, locked orders stay in the `sale` state.
+Use the branch that matches your Odoo version. This branch: **18.0**. Ported from 17.0: `<tree>` renamed to `<list>`, `check_access()`, `self.env._`, `technical_price_unit` handling so manually typed prices are never overwritten.
 
 ## Features
 
@@ -34,7 +34,7 @@ Use the branch that matches your Odoo version. This branch: **17.0**. Ported fro
 
 1. Clone the branch matching your Odoo version into a folder on your addons path:
    ```bash
-   git clone -b 17.0 https://github.com/ibrahim77818/hover_last_sale_price.git
+   git clone -b 18.0 https://github.com/ibrahim77818/hover_last_sale_price.git
    ```
    The module is the `hover_last_sale_price/` folder inside the repository; add the repository folder to
    your `addons_path` (on Odoo.sh, add it as a submodule).
@@ -43,7 +43,7 @@ Use the branch that matches your Odoo version. This branch: **17.0**. Ported fro
 
 ## Tests
 
-26 `TransactionCase` tests (tag `hover_last_sale_price`):
+27 `TransactionCase` tests (tag `hover_last_sale_price`):
 
 ```bash
 odoo-bin -d <db> -i hover_last_sale_price --test-tags hover_last_sale_price --stop-after-init

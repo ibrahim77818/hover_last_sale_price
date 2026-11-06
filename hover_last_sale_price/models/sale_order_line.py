@@ -8,8 +8,8 @@ from odoo.tools.sql import column_exists, create_index
 
 _logger = logging.getLogger(__name__)
 
-# Order line states that count as a real sale. In 17.0 the 'done' state is
-# gone: locked orders stay in 'sale' with sale.order.locked = True.
+# Order line states that count as a real sale. Since 17.0 there is no 'done'
+# state: locked orders stay in 'sale' with sale.order.locked = True.
 LSP_SALE_STATES = ('sale',)
 
 
@@ -96,12 +96,18 @@ class SaleOrderLine(models.Model):
     # triggers (product, UoM, quantity). Adding the customer as a trigger
     # would silently reprice every line when the customer is changed.
     def _compute_price_unit(self):
-        """In v16 ``price_unit`` is a computed field: its compute is what the
+        """``price_unit`` is a computed field: its compute is what the
         web client's onchange runs when product, UoM or quantity change, and
         what ``create()`` runs when no price is given. Hooking here (instead
         of a bare ``@api.onchange``) guarantees the suggestion survives the
         compute cascade (product -> UoM -> price) and also applies to lines
-        created through the API or imports."""
+        created through the API or imports.
+
+        18.0: the standard compute keeps ``technical_price_unit`` in sync with
+        the computed price and treats ``price_unit != technical_price_unit``
+        as a manual price it must not touch. The suggestion follows the same
+        contract: skip manually priced lines, and update both fields so later
+        quantity / UoM changes still recompute the suggestion."""
         super()._compute_price_unit()
         if self.env.context.get('lsp_skip_suggestion'):
             return
@@ -111,6 +117,9 @@ class SaleOrderLine(models.Model):
                     or not line.product_uom or line.qty_invoiced > 0
                     or line.is_expense):
                 continue
+            if (line.technical_price_unit != line.price_unit
+                    and not self.env.context.get('force_price_recomputation')):
+                continue  # manually edited price: leave it alone
             order = line.order_id
             company = line.company_id or order.company_id
             partner = order.partner_id
@@ -133,6 +142,7 @@ class SaleOrderLine(models.Model):
                 date)
             if price is not None:
                 line.price_unit = price
+                line.technical_price_unit = price
 
     # ------------------------------------------------------------------
     # RPC endpoint for the hover widget
@@ -157,8 +167,7 @@ class SaleOrderLine(models.Model):
             return result
         # The user must be allowed to see the customer and the product.
         for record in (partner, product):
-            record.check_access_rights('read')
-            record.check_access_rule('read')
+            record.check_access('read')
 
         target_uom = (self.env['uom.uom'].browse(uom_id).exists()
                       if uom_id else product.uom_id)
