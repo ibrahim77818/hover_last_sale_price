@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hover.last.sale.price</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']" position="inside">
+                <h2>Last Sale Price</h2>
+                <div class="row mt16 o_settings_container" id="lsp_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" id="lsp_enabled_setting">
+                        <div class="o_setting_left_pane">
+                            <field name="lsp_enabled"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="lsp_enabled"/>
+                            <div class="text-muted">
+                                Reuse the prices previously charged to each customer on sales order lines.
+                            </div>
+                            <div class="content-group" attrs="{'invisible': [('lsp_enabled', '=', False)]}">
+                                <div class="mt16 d-flex align-items-start" id="lsp_hover_setting">
+                                    <field name="lsp_hover_enabled" class="oe_inline"/>
+                                    <div class="ms-2">
+                                        <label for="lsp_hover_enabled" class="o_light_label"/>
+                                        <div class="text-muted">
+                                            Hover over a product on an order line to see the customer's recent prices.
+                                        </div>
+                                        <div class="mt8" attrs="{'invisible': [('lsp_hover_enabled', '=', False)]}">
+                                            <label for="lsp_hover_limit" class="o_light_label me-2"/>
+                                            <field name="lsp_hover_limit" class="oe_inline" style="width: 4rem;"
+                                                   attrs="{'required': [('lsp_enabled', '=', True), ('lsp_hover_enabled', '=', True)]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt16 d-flex align-items-start" id="lsp_suggest_setting">
+                                    <field name="lsp_suggest_enabled" class="oe_inline"/>
+                                    <div class="ms-2">
+                                        <label for="lsp_suggest_enabled" class="o_light_label"/>
+                                        <div class="text-muted">
+                                            Fill the unit price with the customer's last price for the product, converted to the line's unit of measure and currency.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

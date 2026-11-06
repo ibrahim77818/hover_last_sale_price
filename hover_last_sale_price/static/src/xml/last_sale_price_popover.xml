@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="hover_last_sale_price.LastSalePricePopover" owl="1">
+        <div class="o_lsp_popover" t-on-mouseenter="onMouseEnter" t-on-mouseleave="onMouseLeave">
+            <div class="o_lsp_header d-flex align-items-start">
+                <i class="fa fa-history text-primary me-2 mt-1"/>
+                <div class="o_lsp_title">
+                    <div class="fw-bold">Last Sale Prices</div>
+                    <div class="text-muted small">
+                        <span t-esc="props.data.product_name"/>
+                        <span class="mx-1">·</span>
+                        <span t-esc="props.data.partner_name"/>
+                    </div>
+                </div>
+            </div>
+            <t t-if="props.data.lines.length">
+                <table class="table table-sm table-borderless o_lsp_table mb-1">
+                    <thead>
+                        <tr>
+                            <th class="text-start">Date</th>
+                            <th class="text-start">Order</th>
+                            <th class="text-end">Quantity</th>
+                            <th class="text-start">UoM</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Disc.%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="props.data.lines" t-as="line" t-key="line.id"
+                            t-att-class="line_first ? 'o_lsp_latest' : ''">
+                            <td class="text-start" t-esc="line.date"/>
+                            <td class="text-start o_lsp_order" t-esc="line.order_name"/>
+                            <td class="text-end o_lsp_num" t-esc="line.qty_fmt"/>
+                            <td class="text-start" t-esc="line.uom_name"/>
+                            <td class="text-end o_lsp_num">
+                                <span class="fw-bold" t-esc="line.price_fmt"/>
+                                <div t-if="line.normalized_fmt" class="text-muted small"
+                                     title="Converted to this line's unit of measure and currency">
+                                    ≈ <t t-esc="line.normalized_fmt"/>
+                                </div>
+                            </td>
+                            <td class="text-end o_lsp_num" t-esc="line.discount_fmt"/>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+            <div t-else="" class="o_lsp_empty text-muted py-2">
+                No previous sales of this product to this customer.
+            </div>
+            <div class="o_lsp_footer text-muted small" t-esc="footerText"/>
+        </div>
+    </t>
+
+</templates>

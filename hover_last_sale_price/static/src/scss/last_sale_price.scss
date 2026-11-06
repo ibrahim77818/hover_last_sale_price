@@ -1,0 +1,97 @@
+// Hover zone wrapping the product field on sales order lines.
+// Odoo generates the RTL bundle with rtlcss, so physical properties
+// (margin-left, text-align: left, ...) are mirrored automatically for
+// Arabic; logical utility classes are used in the templates as well.
+
+.o_lsp_zone {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+
+    > .o_lsp_field {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .o_lsp_indicator {
+        flex: 0 0 auto;
+        margin-left: 4px;
+        font-size: 0.85em;
+        opacity: 0.35;
+        transition: opacity 0.15s ease-in-out;
+        cursor: help;
+    }
+
+    &:hover .o_lsp_indicator {
+        opacity: 1;
+    }
+}
+
+.o_lsp_price_zone {
+    justify-content: flex-end;
+
+    > .o_lsp_field {
+        flex: 0 1 auto;
+    }
+
+    .o_lsp_price_indicator {
+        margin-left: 0;
+        margin-right: 6px;
+        opacity: 0.6;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.o_lsp_popover_container {
+    max-width: 92vw;
+}
+
+.o_lsp_popover {
+    min-width: 320px;
+    max-width: 640px;
+    padding: 8px 12px 6px;
+
+    .o_lsp_header {
+        padding-bottom: 6px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .o_lsp_table {
+        font-size: 0.9em;
+
+        th {
+            font-weight: 600;
+            white-space: nowrap;
+            color: #6c757d;
+        }
+
+        td {
+            white-space: nowrap;
+            vertical-align: top;
+        }
+
+        .o_lsp_num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        tr.o_lsp_latest td {
+            background-color: rgba(1, 126, 132, 0.06);
+        }
+    }
+
+    .o_lsp_footer {
+        padding-top: 4px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+}
+
+// Numbers keep a left-to-right reading order inside Arabic text.
+.o_rtl .o_lsp_popover .o_lsp_num {
+    direction: ltr;
+    unicode-bidi: plaintext;
+}

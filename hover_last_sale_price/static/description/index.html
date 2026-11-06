@@ -1,0 +1,169 @@
+<!-- Odoo Apps description page for hover_last_sale_price (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
+
+<!-- ============================== HERO ============================== -->
+<div style="background:linear-gradient(120deg,#017E84 0%,#3d6b78 45%,#714B67 100%);border-radius:18px;padding:48px 40px 40px;color:#ffffff;margin-top:12px;">
+  <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px;">Sales &middot; Pricing &middot; Customer History</div>
+  <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">Hover Last Sale Price</h1>
+  <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">See what each customer paid last time without leaving the quotation: hover the product or the small history icon beside the unit price. Optionally, new lines are pre-filled with the customer&rsquo;s last price, converted to the line&rsquo;s unit of measure and currency.</p>
+  <div>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">25 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">English &amp; Arabic (RTL)</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: hover_last_sale_price</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
+  </div>
+</div>
+
+<!-- ============================== KEY NUMBERS ============================== -->
+<div style="display:flex;flex-wrap:wrap;margin:28px -8px 8px;">
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">2 hover points</div><div style="font-size:15px;color:#555;">The product name and a history icon beside the unit price</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">1&ndash;50 sales</div><div style="font-size:15px;color:#555;">You choose how many past transactions the card lists</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">2 conversions</div><div style="font-size:15px;color:#555;">Unit of measure and currency, applied before a price is reused</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">0 page reloads</div><div style="font-size:15px;color:#555;">Loaded in the background only when you hover</div></div>
+</div>
+
+<!-- ============================== WHY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Why this module</h2>
+<p style="font-size:16px;line-height:1.6;color:#555;margin:0 0 18px;">Quoting a returning customer usually starts with the question &ldquo;what did we charge them last time?&rdquo;. Standard Odoo makes you leave the quotation to find out.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>The customer&rsquo;s previous prices are <b>not visible on the order line</b>; you open other orders or a report in another tab.</li>
+      <li>A new line always gets the <b>pricelist price</b>, even when the customer has an agreed price from past deals.</li>
+      <li>Past sales in <b>dozens or another currency</b> must be converted by hand before you can compare them.</li>
+      <li>Orders placed by a <b>contact</b> of the customer are easy to miss when you search by company.</li>
+      <li>Drafts and cancelled quotations mix with real sales when you browse order history.</li>
+      <li>Arabic users get a lookup flow that was never designed for right-to-left reading.</li>
+    </ul>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #cfe7e7;background:#f4fbfb;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#017E84;margin:0 0 12px;">With this module</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>Hover the product or the <b>history icon</b> beside <b>Unit Price</b> and the last sales appear right under the line.</li>
+      <li><b>Suggest Last Sale Price</b> fills the unit price of a new line with the customer&rsquo;s latest price.</li>
+      <li>Prices are <b>converted to the line&rsquo;s UoM and currency</b>; the card shows the original and an &ldquo;&asymp;&rdquo; converted value.</li>
+      <li>History covers the <b>whole commercial entity</b>: the company and all its contacts.</li>
+      <li>Only <b>confirmed sales</b> count; drafts, cancelled orders and the order you are editing are excluded.</li>
+      <li>Full <b>Arabic (ar_001)</b> translation with a mirrored, RTL-safe card.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">How it works</h2>
+<p style="font-size:16px;line-height:1.6;color:#555;margin:0 0 18px;">Four steps, no new menus to learn.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;">
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">1</div><div style="font-weight:700;margin-bottom:4px;">Enable</div><div style="font-size:14px;color:#555;">Tick <b>Last Sale Price</b> in Sales settings, then pick hover, suggestion, or both.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">2</div><div style="font-weight:700;margin-bottom:4px;">Quote</div><div style="font-size:14px;color:#555;">Create a quotation for a customer and add products as usual.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">3</div><div style="font-weight:700;margin-bottom:4px;">Hover</div><div style="font-size:14px;color:#555;">Rest the mouse on the product or the icon beside the unit price to see the last N sales.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #cfe7e7;background:#f4fbfb;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#017E84;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">4</div><div style="font-weight:700;margin-bottom:4px;">Price with confidence</div><div style="font-size:14px;color:#555;">Keep the suggested price or adjust it, knowing exactly what the customer paid before.</div></div>
+</div>
+
+<!-- ============================== FEATURES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Features</h2>
+<p style="font-size:16px;line-height:1.6;color:#555;margin:0;">Screenshots use demo data: customer <b>Deco Addict</b> with earlier confirmed orders S00006&ndash;S00038 for <b>[FURN_7800] Desk Combination</b>, <b>[FURN_8888] Office Lamp</b> and <b>[E-COM07] Large Cabinet</b>, in USD with one past order in EUR.</p>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Settings</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">One master switch, two independent options</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Go to <b>Sales &rsaquo; Configuration &rsaquo; Settings</b>, section <b>Last Sale Price</b>. The master toggle is <b>off by default</b>. Once enabled, choose <b>Show Price History on Hover</b> (with <b>Transactions to Show</b>, 1 to 50, default 5) and/or <b>Suggest Last Sale Price</b>. Settings are stored per company; switching the master off disables both options at once.</p>
+  <img src="hlsp_01_settings.png" alt="Sales settings with the Last Sale Price section enabled" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 1</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Hover the product to see the customer&rsquo;s last prices</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">On the <b>Order Lines</b> tab, rest the mouse on a product. The <b>Last Sale Prices</b> card lists <b>Date</b>, <b>Order</b>, <b>Quantity</b>, <b>UoM</b>, <b>Unit Price</b> and <b>Disc.%</b>, newest first, with the latest sale highlighted. It works on the standard product column and with the product configurator or variant grid installed.</p>
+  <img src="hlsp_02_product_hover.png" alt="Hover card listing the last five sales of Desk Combination to Deco Addict" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 2</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">A history icon beside every unit price, with converted values</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">A small history icon sits beside <b>Unit Price</b>. Only the icon opens the card, so editing the price is never obstructed. When a past sale used another unit of measure or currency, the card shows the original price and, underneath, the value <b>&asymp; converted</b> to the current line.</p>
+  <img src="hlsp_03_price_icon_hover.png" alt="Hover card opened from the unit price icon, showing a sale in dozens and one in euros with converted values" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+  <div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Worked example:</b> S00036 sold 2 <b>Dozens</b> at $&nbsp;420.00 per dozen &rarr; $&nbsp;420.00 &divide; 12 = <b>$&nbsp;35.00 per unit</b>. S00029 was sold at 32.00&nbsp;&euro; &rarr; converted with the company&rsquo;s currency rate to <b>$&nbsp;34.56</b>.</div>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">New lines start from the customer&rsquo;s last price</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">With <b>Suggest Last Sale Price</b> enabled, picking a product fills <b>Unit Price</b> with the customer&rsquo;s most recent confirmed price, normalized to the line&rsquo;s UoM and the order currency at the order date. Below, Large Cabinet is listed at $&nbsp;350.00 but the line starts at <b>$&nbsp;320.00</b>, the price of S00034. Changing the UoM re-applies the conversion; with no history, the pricelist price is used as usual.</p>
+  <img src="hlsp_04_suggestion.png" alt="New Large Cabinet line pre-filled with 320.00, the price of the latest sale S00034" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 4</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Arabic translation and right-to-left layout</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Every label, setting and tooltip ships in <b>Arabic (ar_001)</b>. The card mirrors for right-to-left reading while amounts and quantities keep a left-to-right digit order. Dates, quantities and amounts are formatted on the server in the user&rsquo;s language.</p>
+  <img src="hlsp_05_arabic_rtl.png" alt="Quotation in Arabic with the last sale prices card in right-to-left layout" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<!-- ============================== WHAT COUNTS AS HISTORY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">What counts as a past sale</h2>
+<p style="font-size:16px;line-height:1.6;color:#555;margin:0 0 18px;">The same rules feed the hover card and the suggestion.</p>
+<div style="font-size:15px;line-height:1.6;">
+  <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#d1fae5;color:#047857;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Included</span> Lines of <b>Sales Order</b> and <b>Locked</b> orders, quantity above zero, same product, same company</div>
+  <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#dbeafe;color:#1d4ed8;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Whole customer</span> Orders of the company <b>and</b> of any of its contacts (including archived ones)</div>
+  <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#fef3c7;color:#b45309;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Excluded</span> Quotations, cancelled orders, section and note lines, and the order being edited</div>
+  <div style="margin-bottom:6px;"><span style="display:inline-block;min-width:150px;text-align:center;background:#fee2e2;color:#b91c1c;border-radius:10px;padding:1px 8px;font-size:13px;margin-right:10px;">Skipped</span> A sale in a UoM of another category (e.g. kg vs units) is never used for the suggestion</div>
+</div>
+<div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-top:14px;"><b>Order of the list:</b> newest order date first, then newest order. The suggestion always takes the first entry, so it matches the highlighted row of the card.</div>
+
+<!-- ============================== CORNER CASES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Built for real-world corner cases</h2>
+<p style="font-size:16px;line-height:1.6;color:#555;margin:0 0 18px;">Each of these is covered by the code and, where it applies, by the automated tests.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-company</b><br/><span style="color:#555;">Settings are per company and history only comes from the order&rsquo;s company; companies the user is not allowed in return nothing.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-currency</b><br/><span style="color:#555;">Past prices are converted to the order currency with the company&rsquo;s rates at the order date.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Different units of measure</b><br/><span style="color:#555;">Dozens, packs or units of the same category are converted; incompatible categories are ignored.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Prices you type are kept</b><br/><span style="color:#555;">A price given explicitly (by you, an import or the API) is never overwritten; invoiced lines are never repriced.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Changing the customer</b><br/><span style="color:#555;">Existing lines are not silently repriced when the customer changes; the suggestion only fires on product, UoM or quantity changes.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Large order history</b><br/><span style="color:#555;">One indexed query with a limit; a dedicated database index on product, customer, company and state keeps it fast.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Fast mouse movements</b><br/><span style="color:#555;">The card waits for a short steady hover, results are cached for 30 seconds, and late answers are discarded.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Typing a product</b><br/><span style="color:#555;">The product card stays closed while you type in the product field, so it never hides the autocomplete.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Imports and integrations</b><br/><span style="color:#555;">Lines created through the API also get the suggestion; pass the context key <code>lsp_skip_suggestion</code> to opt out.</span></div>
+</div>
+
+<!-- ============================== SECURITY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Security</h2>
+<p style="font-size:16px;line-height:1.6;color:#555;margin:0 0 18px;">No new groups. Access follows standard Sales rights.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Sees / can do</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Sales users (any level)</td><td style="padding:10px 14px;">The card for orders they can open, if they can read the customer and the product. History includes sales made by colleagues, so the whole team quotes from the same reference.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Sales Administrator</td><td style="padding:10px 14px;">Enables the feature and its options in <b>Sales &rsaquo; Configuration &rsaquo; Settings</b>.</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Multi-company</td><td style="padding:10px 14px;">History only from the order&rsquo;s company, and only for companies in the user&rsquo;s allowed companies.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== TECHNICAL ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Technical details</h2>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Odoo version</td><td style="padding:10px 14px;">16.0, Community and Enterprise (module version 16.0.1.1.0)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Depends on</td><td style="padding:10px 14px;"><code>sale</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Python dependency</td><td style="padding:10px 14px;">None</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Menus</td><td style="padding:10px 14px;">No new menus; works inside <b>Sales &rsaquo; Orders &rsaquo; Quotations / Orders</b></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Settings</td><td style="padding:10px 14px;"><b>Sales &rsaquo; Configuration &rsaquo; Settings &rsaquo; Last Sale Price</b></td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Models extended</td><td style="padding:10px 14px;"><code>res.company</code>, <code>res.config.settings</code>, <code>sale.order</code>, <code>sale.order.line</code> (no new tables)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Front end</td><td style="padding:10px 14px;">OWL field widgets <code>sol_product_many2one</code> (extended) and <code>lsp_price_unit</code>, shared hover hook, popover service</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">Automated tests</td><td style="padding:10px 14px;">25 <code>TransactionCase</code> tests: settings and limits, date ordering, N limit, exclusions, contacts, company isolation, UoM and currency normalization, suggestion triggers and fallbacks</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;">Languages</td><td style="padding:10px 14px;">English, Arabic (<code>ar_001</code>)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;">License</td><td style="padding:10px 14px;">LGPL-3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CONTACT ============================== -->
+<div style="margin:52px 0 40px;background:linear-gradient(120deg,#714B67 0%,#017E84 100%);border-radius:18px;padding:36px 40px;color:#fff;">
+  <h2 style="font-size:26px;font-weight:700;margin:0 0 8px;color:#fff;">Support &amp; customization</h2>
+  <p style="font-size:16px;line-height:1.6;margin:0 0 20px;color:#fff;opacity:.95;">Questions, a demo, or an adaptation to your own process? Get in touch.</p>
+  <a href="mailto:ibrahim.yahiah@gmail.com" style="display:inline-block;background:#fff;color:#714B67;font-weight:700;text-decoration:none;border-radius:8px;padding:12px 22px;margin:0 12px 10px 0;">&#9993;&nbsp; ibrahim.yahiah@gmail.com</a>
+  <a href="https://www.linkedin.com/in/ibrahim-yahia" target="_blank" rel="noopener" style="display:inline-block;border:2px solid #fff;color:#fff;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 22px;margin:0 0 10px 0;">LinkedIn: Ibrahim Yahia</a>
+  <p style="font-size:13px;margin:14px 0 0;opacity:.8;color:#fff;">Author: Ibrahim Yahia &middot; License: LGPL-3</p>
+</div>
+
+</section>

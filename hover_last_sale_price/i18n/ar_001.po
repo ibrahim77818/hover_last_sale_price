@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hover_last_sale_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-05 13:30+0000\n"
+"PO-Revision-Date: 2026-11-05 13:30+0000\n"
+"Last-Translator: Ibrahim Yahia\n"
+"Language-Team: \n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_company__lsp_suggest_enabled
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_config_settings__lsp_suggest_enabled
+msgid "Automatically fill the unit price of a new sales order line with the price last charged to the customer for that product."
+msgstr "تعبئة سعر الوحدة تلقائيًا في بند أمر البيع الجديد بآخر سعر تم تحصيله من العميل لهذا المنتج."
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Converted to this line's unit of measure and currency"
+msgstr "محوَّل إلى وحدة القياس والعملة الخاصة بهذا البند"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Disc.%"
+msgstr "الخصم %"
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_company__lsp_hover_enabled
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_config_settings__lsp_hover_enabled
+msgid "Display a popup with the customer's previous prices when hovering over the product of a sales order line."
+msgstr "عرض نافذة منبثقة بأسعار العميل السابقة عند تمرير المؤشر فوق منتج بند أمر البيع."
+
+#. module: hover_last_sale_price
+#: model_terms:ir.ui.view,arch_db:hover_last_sale_price.res_config_settings_view_form
+msgid "Fill the unit price with the customer's last price for the product, converted to the line's unit of measure and currency."
+msgstr "تعبئة سعر الوحدة بآخر سعر للعميل لهذا المنتج، بعد تحويله إلى وحدة القياس والعملة الخاصة بالبند."
+
+#. module: hover_last_sale_price
+#: model_terms:ir.ui.view,arch_db:hover_last_sale_price.res_config_settings_view_form
+msgid "Hover over a product on an order line to see the customer's recent prices."
+msgstr "مرّر المؤشر فوق منتج في بند الأمر لعرض أحدث أسعار العميل."
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/js/last_sale_price_hover.js:0
+msgid "Hover to see the customer's last sale prices"
+msgstr "مرّر المؤشر لعرض آخر أسعار البيع لهذا العميل"
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_company__lsp_enabled
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_config_settings__lsp_enabled
+#: model_terms:ir.ui.view,arch_db:hover_last_sale_price.res_config_settings_view_form
+msgid "Last Sale Price"
+msgstr "آخر سعر بيع"
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_sale_order__lsp_hover_enabled
+msgid "Last Sale Price Hover"
+msgstr "عرض آخر سعر بيع عند التمرير"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Last Sale Prices"
+msgstr "آخر أسعار البيع"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "No previous sales of this product to this customer."
+msgstr "لا توجد مبيعات سابقة لهذا المنتج لهذا العميل."
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_company__lsp_hover_limit
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_config_settings__lsp_hover_limit
+msgid "Number of previous confirmed sales displayed in the hover popup (1 to 50)."
+msgstr "عدد المبيعات المؤكدة السابقة المعروضة في النافذة المنبثقة (من 1 إلى 50)."
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Order"
+msgstr "أمر البيع"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: hover_last_sale_price
+#: model_terms:ir.ui.view,arch_db:hover_last_sale_price.res_config_settings_view_form
+msgid "Reuse the prices previously charged to each customer on sales order lines."
+msgstr "إعادة استخدام الأسعار التي سبق تحصيلها من كل عميل في بنود أوامر البيع."
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_company__lsp_hover_enabled
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_config_settings__lsp_hover_enabled
+msgid "Show Price History on Hover"
+msgstr "عرض سجل الأسعار عند التمرير"
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_company__lsp_suggest_enabled
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_config_settings__lsp_suggest_enabled
+msgid "Suggest Last Sale Price"
+msgstr "اقتراح آخر سعر بيع"
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,help:hover_last_sale_price.field_sale_order__lsp_hover_enabled
+msgid "Technical flag read by the order line widget to decide whether the last sale price popup is available."
+msgstr "مؤشر تقني تقرؤه أداة بند الأمر لتحديد ما إذا كانت نافذة آخر سعر بيع متاحة."
+
+#. module: hover_last_sale_price
+#. odoo-python
+#: code:addons/hover_last_sale_price/models/res_company.py:0
+msgid "The number of transactions to show on hover must be between 1 and %(max)s."
+msgstr "يجب أن يكون عدد المعاملات المعروضة عند التمرير بين 1 و%(max)s."
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_company__lsp_enabled
+#: model:ir.model.fields,help:hover_last_sale_price.field_res_config_settings__lsp_enabled
+msgid "Track the prices previously charged to each customer and reuse them on sales order lines."
+msgstr "تتبّع الأسعار التي سبق تحصيلها من كل عميل وإعادة استخدامها في بنود أوامر البيع."
+
+#. module: hover_last_sale_price
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_company__lsp_hover_limit
+#: model:ir.model.fields,field_description:hover_last_sale_price.field_res_config_settings__lsp_hover_limit
+msgid "Transactions to Show"
+msgstr "عدد المعاملات المعروضة"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "Unit Price"
+msgstr "سعر الوحدة"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/xml/last_sale_price_popover.xml:0
+msgid "UoM"
+msgstr "وحدة القياس"
+
+#. module: hover_last_sale_price
+#. odoo-javascript
+#: code:addons/hover_last_sale_price/static/src/js/last_sale_price_popover.js:0
+msgid "Up to %s most recent confirmed sales"
+msgstr "حتى %s من أحدث المبيعات المؤكدة"
