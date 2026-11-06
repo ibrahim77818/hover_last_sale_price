@@ -90,8 +90,10 @@
     }
 }
 
-// Numbers keep a left-to-right reading order inside Arabic text.
-.o_rtl .o_lsp_popover .o_lsp_num {
+// Numbers keep a left-to-right reading order inside Arabic text. The
+// rtl:ignore directive stops rtlcss from flipping it in the RTL bundle.
+.o_lsp_popover .o_lsp_num {
+    /*rtl:ignore*/
     direction: ltr;
-    unicode-bidi: plaintext;
+    unicode-bidi: isolate;
 }

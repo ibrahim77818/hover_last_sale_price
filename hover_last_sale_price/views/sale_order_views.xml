@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- The hover widget replaces the standard "sol_product_many2one" field
-         widget in JS, so no line view change is needed (and it stays
-         compatible with the product configurator / matrix, which patch the
-         same component). The order exposes the technical flag and the unit
-         price gets the history icon widget. -->
+    <!-- The product hover replaces the standard "sol_product_many2one" field
+         widget in JS, so the product column needs no view change (and it
+         stays compatible with the product configurator / matrix, which patch
+         the same component). The order exposes the technical flag and the
+         unit price gets the history icon widget. In 17.0 the line list is
+         still a <tree> (it becomes <list> in 18.0). -->
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.hover.last.sale.price</field>
         <field name="model">sale.order</field>

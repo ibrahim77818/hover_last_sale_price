@@ -2,9 +2,11 @@
 
 import { xml } from "@odoo/owl";
 import { registry } from "@web/core/registry";
-import { FloatField } from "@web/views/fields/float/float_field";
+import { FloatField, floatField } from "@web/views/fields/float/float_field";
 import { SaleOrderLineProductField } from "@sale/js/sale_product_field";
 import { useLastSalePriceHover } from "./last_sale_price_hover";
+
+const fieldRegistry = registry.category("fields");
 
 /**
  * Sales order line product field with the "last sale prices" hover card.
@@ -15,33 +17,27 @@ import { useLastSalePriceHover } from "./last_sale_price_hover";
  * working (they live on the parent prototype).
  */
 export class LastSalePriceProductField extends SaleOrderLineProductField {
-    setup() {
-        super.setup();
-        this.lspHover = useLastSalePriceHover(() => this.props.record);
-    }
-}
-
-// Wrap the parent template (resolved dynamically, so it follows whatever
-// template name `sale` uses) in a hover zone with a small indicator icon.
-LastSalePriceProductField.template = xml`
+    // Wrap the parent template (resolved dynamically, so it follows whatever
+    // template name `sale` uses) in a hover zone with a small indicator icon.
+    static template = xml`
 <div class="o_lsp_zone" t-on-mouseenter="lspHover.onMouseEnter" t-on-mouseleave="lspHover.onMouseLeave">
     <div class="o_lsp_field"><t t-call="${SaleOrderLineProductField.template}"/></div>
     <i t-if="lspHover.isActive" class="fa fa-history text-primary o_lsp_indicator" role="img"
        t-att-title="lspHover.indicatorTitle" t-att-aria-label="lspHover.indicatorTitle"/>
 </div>`;
 
-/**
- * Unit price field with a small history icon beside the price. Only the icon
- * opens the hover card, so editing the price is never obstructed.
- */
-export class LastSalePriceUnitPriceField extends FloatField {
     setup() {
         super.setup();
         this.lspHover = useLastSalePriceHover(() => this.props.record);
     }
 }
 
-LastSalePriceUnitPriceField.template = xml`
+/**
+ * Unit price field with a small history icon beside the price. Only the icon
+ * opens the hover card, so editing the price is never obstructed.
+ */
+export class LastSalePriceUnitPriceField extends FloatField {
+    static template = xml`
 <div class="o_lsp_zone o_lsp_price_zone">
     <i t-if="lspHover.isActive" class="fa fa-history text-primary o_lsp_indicator o_lsp_price_indicator"
        role="img" t-att-title="lspHover.indicatorTitle" t-att-aria-label="lspHover.indicatorTitle"
@@ -49,8 +45,22 @@ LastSalePriceUnitPriceField.template = xml`
     <div class="o_lsp_field"><t t-call="${FloatField.template}"/></div>
 </div>`;
 
-registry
-    .category("fields")
-    .add("sol_product_many2one", LastSalePriceProductField, { force: true })
-    .add("lsp_sol_product_many2one", LastSalePriceProductField)
-    .add("lsp_price_unit", LastSalePriceUnitPriceField);
+    setup() {
+        super.setup();
+        this.lspHover = useLastSalePriceHover(() => this.props.record);
+    }
+}
+
+// 17.0: the fields registry holds descriptor objects ({ component,
+// extractProps, supportedTypes, ... }) instead of component classes. Reuse
+// the standard descriptors so props extraction stays identical.
+const productDescriptor = {
+    ...fieldRegistry.get("sol_product_many2one"),
+    component: LastSalePriceProductField,
+};
+const priceDescriptor = { ...floatField, component: LastSalePriceUnitPriceField };
+
+fieldRegistry
+    .add("sol_product_many2one", productDescriptor, { force: true })
+    .add("lsp_sol_product_many2one", productDescriptor)
+    .add("lsp_price_unit", priceDescriptor);

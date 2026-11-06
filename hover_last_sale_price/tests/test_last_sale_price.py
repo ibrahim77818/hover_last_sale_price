@@ -248,6 +248,17 @@ class TestLastSalePrice(TransactionCase):
         self.assertFalse(line['normalized_fmt'])
         self.assertAlmostEqual(line['normalized_price'], 12.5)
 
+    def test_18_history_includes_locked_orders(self):
+        # 17.0: locking keeps the order in state 'sale' (no 'done' state).
+        locked = self._create_order(61.0, days_ago=3)
+        locked.action_lock()
+        self.assertTrue(locked.locked)
+        self.assertEqual(locked.state, 'sale')
+        self._create_order(52.0, days_ago=30)
+        data = self._history()
+        self.assertEqual([l['price_unit'] for l in data['lines']], [61.0, 52.0])
+        self.assertEqual(self._suggested_price(), 61.0)
+
     def test_17_history_empty_for_new_customer(self):
         self._create_order(30.0)
         data = self._history(partner=self.other_customer)

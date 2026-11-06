@@ -8,8 +8,9 @@ from odoo.tools.sql import column_exists, create_index
 
 _logger = logging.getLogger(__name__)
 
-# Order line states that count as a real sale.
-LSP_SALE_STATES = ('sale', 'done')
+# Order line states that count as a real sale. In 17.0 the 'done' state is
+# gone: locked orders stay in 'sale' with sale.order.locked = True.
+LSP_SALE_STATES = ('sale',)
 
 
 class SaleOrderLine(models.Model):
@@ -107,7 +108,8 @@ class SaleOrderLine(models.Model):
         memo = {}
         for line in self:
             if (line.display_type or not line.product_id
-                    or not line.product_uom or line.qty_invoiced > 0):
+                    or not line.product_uom or line.qty_invoiced > 0
+                    or line.is_expense):
                 continue
             order = line.order_id
             company = line.company_id or order.company_id

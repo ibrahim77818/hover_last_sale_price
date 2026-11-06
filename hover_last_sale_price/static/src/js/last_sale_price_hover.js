@@ -1,7 +1,6 @@
 /** @odoo-module **/
 
-import { onWillUnmount } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
+import { onWillUnmount, useEnv } from "@odoo/owl";
 import { usePopover } from "@web/core/popover/popover_hook";
 import { _t } from "@web/core/l10n/translation";
 import { LastSalePricePopover } from "./last_sale_price_popover";
@@ -33,16 +32,22 @@ export function m2oId(value) {
  * current sale.order.line record.
  */
 export function useLastSalePriceHover(getRecord) {
-    const rpc = useService("rpc");
-    const user = useService("user");
-    const popover = usePopover();
+    // Raw (unprotected) ORM service: the request promise is shared through
+    // the module cache, so it must still settle if this widget is destroyed
+    // while the call is in flight. The ORM adds the user context itself.
+    const orm = useEnv().services.orm;
     const state = {
-        close: null,
         openTimer: null,
         closeTimer: null,
         requestId: 0,
         hovered: false,
     };
+    // 17.0 API: usePopover(Component, options) -> { open, close, isOpen }.
+    const popover = usePopover(LastSalePricePopover, {
+        position: "bottom",
+        popoverClass: "o_lsp_popover_container",
+        closeOnClickAway: true,
+    });
 
     function rootRecord() {
         const model = getRecord().model;
@@ -89,34 +94,17 @@ export function useLastSalePriceHover(getRecord) {
         if (historyCache.size >= CACHE_MAX_ENTRIES) {
             historyCache.clear();
         }
-        const promise = rpc(
-            "/web/dataset/call_kw/sale.order.line/lsp_get_history",
-            {
-                model: "sale.order.line",
-                method: "lsp_get_history",
-                args: [],
-                kwargs: { ...params, context: user.context },
-            },
-            { silent: true }
-        );
+        const promise = orm.silent.call("sale.order.line", "lsp_get_history", [], params);
         historyCache.set(key, { time: Date.now(), promise });
         promise.catch(() => historyCache.delete(key));
         return promise;
-    }
-
-    function closePopover() {
-        if (state.close) {
-            const close = state.close;
-            state.close = null;
-            close();
-        }
     }
 
     function scheduleClose() {
         clearTimeout(state.closeTimer);
         state.closeTimer = setTimeout(() => {
             if (!state.hovered) {
-                closePopover();
+                popover.close();
             }
         }, CLOSE_DELAY);
     }
@@ -130,47 +118,36 @@ export function useLastSalePriceHover(getRecord) {
         let data;
         try {
             data = await fetchHistory(params);
-        } catch (_error) {
+        } catch {
             return; // access error / network: fail silently on hover
         }
         if (
             requestId !== state.requestId ||
             !state.hovered ||
-            state.close ||
+            popover.isOpen ||
             !data ||
             !data.enabled ||
             !document.body.contains(target)
         ) {
             return;
         }
-        state.close = popover.add(
-            target,
-            LastSalePricePopover,
-            {
-                data,
-                onMouseEnter: () => {
-                    state.hovered = true;
-                    clearTimeout(state.closeTimer);
-                },
-                onMouseLeave: () => {
-                    state.hovered = false;
-                    scheduleClose();
-                },
+        popover.open(target, {
+            data,
+            onMouseEnter: () => {
+                state.hovered = true;
+                clearTimeout(state.closeTimer);
             },
-            {
-                position: "bottom",
-                popoverClass: "o_lsp_popover_container",
-                onClose: () => {
-                    state.close = null;
-                },
-            }
-        );
+            onMouseLeave: () => {
+                state.hovered = false;
+                scheduleClose();
+            },
+        });
     }
 
     function onMouseEnter(ev) {
         state.hovered = true;
         clearTimeout(state.closeTimer);
-        if (state.close || !isActive()) {
+        if (popover.isOpen || !isActive()) {
             return;
         }
         const target = ev.currentTarget;
@@ -190,11 +167,11 @@ export function useLastSalePriceHover(getRecord) {
         scheduleClose();
     }
 
+    // usePopover closes its popover on unmount; only timers are left here.
     onWillUnmount(() => {
         clearTimeout(state.openTimer);
         clearTimeout(state.closeTimer);
         state.requestId++;
-        closePopover();
     });
 
     return {

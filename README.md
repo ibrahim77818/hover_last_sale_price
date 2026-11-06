@@ -1,9 +1,9 @@
-# Hover Last Sale Price (Odoo 16.0)
+# Hover Last Sale Price (Odoo 17.0)
 
 Show each customer's last sale prices right on the sales order line, and optionally pre-fill new lines
 with the customer's last price, converted to the line's unit of measure and currency.
 
-**Odoo 16.0** &middot; Community &amp; Enterprise &middot; English &amp; Arabic (`ar_001`, RTL) &middot; LGPL-3
+**Odoo 17.0** &middot; Community &amp; Enterprise &middot; English &amp; Arabic (`ar_001`, RTL) &middot; LGPL-3
 
 ## Branches
 
@@ -14,7 +14,7 @@ with the customer's last price, converted to the line's unit of measure and curr
 | [`18.0`](../../tree/18.0) | 18.0 |
 | [`19.0`](../../tree/19.0) | 19.0 |
 
-Use the branch that matches your Odoo version. This branch: **16.0**. Base version.
+Use the branch that matches your Odoo version. This branch: **17.0**. Ported from 16.0: 17.0 settings layout (`<app>/<block>/<setting>`), `attrs` replaced by inline expressions, field registry descriptors, `usePopover(Component, options)` API, locked orders stay in the `sale` state.
 
 ## Features
 
@@ -34,7 +34,7 @@ Use the branch that matches your Odoo version. This branch: **16.0**. Base versi
 
 1. Clone the branch matching your Odoo version into a folder on your addons path:
    ```bash
-   git clone -b 16.0 https://github.com/ibrahim77818/hover_last_sale_price.git
+   git clone -b 17.0 https://github.com/ibrahim77818/hover_last_sale_price.git
    ```
    The module is the `hover_last_sale_price/` folder inside the repository; add the repository folder to
    your `addons_path` (on Odoo.sh, add it as a submodule).
@@ -43,7 +43,7 @@ Use the branch that matches your Odoo version. This branch: **16.0**. Base versi
 
 ## Tests
 
-25 `TransactionCase` tests (tag `hover_last_sale_price`):
+26 `TransactionCase` tests (tag `hover_last_sale_price`):
 
 ```bash
 odoo-bin -d <db> -i hover_last_sale_price --test-tags hover_last_sale_price --stop-after-init

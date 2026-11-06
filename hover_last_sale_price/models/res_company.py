@@ -40,7 +40,7 @@ class ResCompany(models.Model):
             if not 1 <= company.lsp_hover_limit <= LSP_MAX_LIMIT:
                 raise ValidationError(_(
                     "The number of transactions to show on hover must be "
-                    "between 1 and %(max)s.") % {'max': LSP_MAX_LIMIT})
+                    "between 1 and %(max)s.", max=LSP_MAX_LIMIT))
 
     def _lsp_hover_active(self):
         """Hover popup is effective only when the master toggle is on."""

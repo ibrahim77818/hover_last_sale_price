@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-05 13:30+0000\n"
-"PO-Revision-Date: 2026-11-05 13:30+0000\n"
+"POT-Creation-Date: 2026-11-06 10:10+0000\n"
+"PO-Revision-Date: 2026-11-06 10:10+0000\n"
 "Last-Translator: Ibrahim Yahia\n"
 "Language-Team: \n"
 "Language: ar_001\n"
@@ -53,8 +53,8 @@ msgstr "تعبئة سعر الوحدة بآخر سعر للعميل لهذا ا�
 
 #. module: hover_last_sale_price
 #: model_terms:ir.ui.view,arch_db:hover_last_sale_price.res_config_settings_view_form
-msgid "Hover over a product on an order line to see the customer's recent prices."
-msgstr "مرّر المؤشر فوق منتج في بند الأمر لعرض أحدث أسعار العميل."
+msgid "Hover over the product or the history icon beside the unit price to see the customer's recent prices."
+msgstr "مرّر المؤشر فوق المنتج أو أيقونة السجل بجوار سعر الوحدة لعرض أحدث أسعار العميل."
 
 #. module: hover_last_sale_price
 #. odoo-javascript

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Hover Last Sale Price',
-    'version': '16.0.1.1.0',
+    'version': '17.0.1.0.0',
     'category': 'Sales/Sales',
     'summary': "Show each customer's last sale prices on hover and suggest "
                "the last price on new sales order lines",
