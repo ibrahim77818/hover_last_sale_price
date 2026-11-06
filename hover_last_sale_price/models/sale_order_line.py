@@ -4,7 +4,6 @@ import logging
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_compare
 from odoo.tools.misc import format_date, formatLang
-from odoo.tools.sql import column_exists, create_index
 
 _logger = logging.getLogger(__name__)
 
@@ -18,14 +17,10 @@ class SaleOrderLine(models.Model):
 
     # ------------------------------------------------------------------
     # Performance: composite index serving the history lookup
+    # (19.0 declarative indexes replace init() + odoo.tools.sql.create_index)
     # ------------------------------------------------------------------
-    def init(self):
-        super().init()
-        cr = self.env.cr
-        needed = ('product_id', 'order_partner_id', 'company_id', 'state')
-        if all(column_exists(cr, self._table, col) for col in needed):
-            create_index(cr, 'sale_order_line_lsp_history_index',
-                         self._table, list(needed))
+    _lsp_history_idx = models.Index(
+        "(product_id, order_partner_id, company_id, state)")
 
     # ------------------------------------------------------------------
     # History retrieval
@@ -71,15 +66,25 @@ class SaleOrderLine(models.Model):
     # ------------------------------------------------------------------
     # Normalization (UoM + currency)
     # ------------------------------------------------------------------
+    @api.model
+    def _lsp_uom_compatible(self, src_uom, target_uom):
+        """19.0 removed uom.category: two units are convertible when they
+        share a common reference unit. Category check kept as a fallback."""
+        if hasattr(src_uom, '_has_common_reference'):
+            return src_uom._has_common_reference(target_uom)
+        if 'category_id' in src_uom._fields:
+            return src_uom.category_id == target_uom.category_id
+        return True
+
     def _lsp_normalized_price(self, target_uom=None, target_currency=None,
                               date=None):
         """Express this line's unit price in ``target_uom`` and
         ``target_currency``. Returns ``None`` when UoMs are not comparable."""
         self.ensure_one()
         price = self.price_unit
-        src_uom = self.product_uom
+        src_uom = self.product_uom_id
         if target_uom and src_uom and target_uom != src_uom:
-            if src_uom.category_id != target_uom.category_id:
+            if not self._lsp_uom_compatible(src_uom, target_uom):
                 return None
             price = src_uom._compute_price(price, target_uom)
         src_currency = self.currency_id or self.order_id.currency_id
@@ -114,7 +119,7 @@ class SaleOrderLine(models.Model):
         memo = {}
         for line in self:
             if (line.display_type or not line.product_id
-                    or not line.product_uom or line.qty_invoiced > 0
+                    or not line.product_uom_id or line.qty_invoiced > 0
                     or line.is_expense):
                 continue
             if (line.technical_price_unit != line.price_unit
@@ -137,7 +142,7 @@ class SaleOrderLine(models.Model):
             date = (order.date_order.date() if order.date_order
                     else fields.Date.context_today(line))
             price = history._lsp_normalized_price(
-                line.product_uom,
+                line.product_uom_id,
                 order.currency_id or company.currency_id,
                 date)
             if price is not None:
@@ -190,7 +195,7 @@ class SaleOrderLine(models.Model):
                 target_uom, target_currency, today)
             show_normalized = (
                 normalized is not None
-                and (line.product_uom != target_uom
+                and (line.product_uom_id != target_uom
                      or currency != target_currency)
                 and float_compare(normalized, line.price_unit,
                                   precision_digits=price_digits) != 0
@@ -204,8 +209,8 @@ class SaleOrderLine(models.Model):
                 'qty': line.product_uom_qty,
                 'qty_fmt': formatLang(self.env, line.product_uom_qty,
                                       dp='Product Unit of Measure'),
-                'uom_id': line.product_uom.id,
-                'uom_name': line.product_uom.name,
+                'uom_id': line.product_uom_id.id,
+                'uom_name': line.product_uom_id.name,
                 'price_unit': line.price_unit,
                 'price_fmt': formatLang(self.env, line.price_unit,
                                         dp='Product Price',

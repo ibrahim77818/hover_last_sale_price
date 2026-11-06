@@ -20,8 +20,7 @@ class TestLastSalePrice(TransactionCase):
             'lsp_hover_limit': 5,
             'lsp_suggest_enabled': True,
         })
-        # Make the UoM column editable in Form() whatever the demo settings.
-        cls.env.user.groups_id |= cls.env.ref('uom.group_uom')
+        # 19.0: units of measure are always enabled (no uom.group_uom).
         cls.SaleLine = cls.env['sale.order.line']
         cls.uom_unit = cls.env.ref('uom.product_uom_unit')
         cls.uom_dozen = cls.env.ref('uom.product_uom_dozen')
@@ -66,7 +65,7 @@ class TestLastSalePrice(TransactionCase):
             'order_line': [(0, 0, {
                 'product_id': (product or cls.product).id,
                 'product_uom_qty': qty,
-                'product_uom': (uom or cls.uom_unit).id,
+                'product_uom_id': (uom or cls.uom_unit).id,
                 'price_unit': price,
                 'discount': discount,
             })],
@@ -101,7 +100,7 @@ class TestLastSalePrice(TransactionCase):
         with order_form.order_line.new() as line:
             line.product_id = product or self.product
             if uom:
-                line.product_uom = uom
+                line.product_uom_id = uom
         order = order_form.save()
         return order.order_line.price_unit
 

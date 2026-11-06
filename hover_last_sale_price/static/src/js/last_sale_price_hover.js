@@ -78,7 +78,7 @@ export function useLastSalePriceHover(getRecord) {
             partner_id: partnerId,
             order_id: root.resId || false,
             company_id: m2oId(root.data.company_id),
-            uom_id: m2oId(data.product_uom),
+            uom_id: m2oId(data.product_uom_id),
             currency_id: m2oId(root.data.currency_id),
         };
     }
